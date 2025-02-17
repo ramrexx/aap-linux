@@ -1,5 +1,5 @@
 ---
-- name: set_hostname_r
+- name: set_hostname
   hosts: "{{ _hosts }}"
   become: true
   gather_facts: true

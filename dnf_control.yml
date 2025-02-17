@@ -1,5 +1,5 @@
 ---
-- name: dnf_control_r
+- name: dnf_control
   hosts: "{{ _hosts }}"
   become: true
   gather_facts: false
