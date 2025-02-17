@@ -1,0 +1,9 @@
+---
+- name: set hostname {{ ansible_host }}
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname | regex_replace('_', '-') }}"
+  register: set_hostname_results
+
+- name: Log set_hostname_results
+  ansible.builtin.debug:
+    var: set_hostname_results

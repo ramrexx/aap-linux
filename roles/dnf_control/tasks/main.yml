@@ -1,0 +1,10 @@
+---
+- name: Executing DNF Control
+  ansible.builtin.dnf:
+    name: "{{ _servicename }}"
+    state: "{{ _servicestate }}"
+  register: dnf_out
+
+- name: Log dnf_out
+  ansible.builtin.debug:
+    var: dnf_out

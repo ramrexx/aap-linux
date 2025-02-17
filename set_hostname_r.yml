@@ -1,0 +1,8 @@
+---
+- name: set_hostname_r
+  hosts: "{{ _hosts }}"
+  become: true
+  gather_facts: true
+
+  roles:
+      - set_hostname

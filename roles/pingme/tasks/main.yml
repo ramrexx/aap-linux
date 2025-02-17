@@ -1,0 +1,8 @@
+---
+- name: pinging host {{ ansible_host }}
+  ansible.builtin.ping:
+  register: pingme_results
+
+- name: Log ping_results
+  ansible.builtin.debug:
+    var: pingme_results

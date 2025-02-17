@@ -1,0 +1,10 @@
+---
+_org_id: 
+_activation_key: 
+_force_register: true
+_state: 'present'
+_usage: 'Dev'
+_systemrole: 'Red Hat Enterprise Server'
+_service_level_agreement: 'Self-Support'
+_sync: true
+# _auto_attach: true
