@@ -1,11 +1,27 @@
 ---
 - name: insights
   hosts: "{{ _hosts }}"
-  become: false
+  become: true
   gather_facts: false
 
   tasks:
-      - name: register insights
-        include_role:
-          name: insights
-        when: _state == 'present'
+    - name: register insights
+      include_role:
+        name: dnf
+      vars:
+        _servicename: insights-client
+        _servicestate: present
+
+    - name: register insights
+      include_role:
+        name: insights
+      vars:
+        _state: present
+      when: _state is not defined or _state == '' or _state == 'present'
+
+    - name: unregister insights
+      include_role:
+        name: insights
+      vars:
+        _state: absent
+      when: _state == 'absent'
