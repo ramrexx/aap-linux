@@ -1,27 +1,8 @@
 ---
-- name: Register ec2 instance with subscription mangler
+- name: rhsm_register
   hosts: "{{ _hosts }}"
   become: true
-  
-  vars:
-    _org_id: 
-    _activation_key: 
-    _force_register: true
+  gather_facts: false
 
-  tasks:
-    - name: install subscription-manager
-      ansible.builtin.dnf:
-        name: subscription-manager
-        state: present
-
-    - name: register host
-      redhat_subscription:
-        state: present
-        activationkey: "{{ _activation_key }}"
-        org_id: "{{ _org_id }}"
-        force_register: "{{ _force_register }}"
-      register: _rhsm_results
-
-    - name: Log _rhsm_results
-      ansible.builtin.debug:
-        var: _rhsm_results
+  roles:
+    - role: rhsm_register

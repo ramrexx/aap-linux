@@ -1,5 +1,5 @@
 ---
-- name: Executing DNF Control
+- name: Executing DNF
   ansible.builtin.dnf:
     name: "{{ _servicename }}"
     state: "{{ _servicestate }}"

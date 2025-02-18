@@ -1,0 +1,10 @@
+---
+- name: register insights
+  include_role:
+    name: insights
+  # when: _state == 'present'
+  register: insights_results
+
+- name: Log insights_results
+  ansible.builtin.debug:
+    var: insights_results

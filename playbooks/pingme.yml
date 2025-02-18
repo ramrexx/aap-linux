@@ -2,18 +2,9 @@
 - name: pingme
   hosts: "{{ _hosts }}"
   become: false
-  gather_facts: true
-
-  vars:
-    verbose: false
-
+  gather_facts: false
 
   tasks:
-    - name: Ping host
-      ansible.builtin.ping:
-      register: pingme_results
-
-    - name: Log pingme_results
-      ansible.builtin.debug:
-        var: pingme_results
-      when: verbose
+      - name: Executing pingme
+        include_role:
+          name: pingme

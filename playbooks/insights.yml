@@ -1,0 +1,11 @@
+---
+- name: insights
+  hosts: "{{ _hosts }}"
+  become: false
+  gather_facts: false
+
+  tasks:
+      - name: register insights
+        include_role:
+          name: insights
+        when: _state == 'present'
