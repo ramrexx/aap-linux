@@ -1,22 +1,38 @@
 ---
-- name: Install subscription-manager
+- name: Ensure subscription-manager is installed
+  tags: always
   ansible.builtin.dnf:
     name: subscription-manager
     state: present
 
-- name: Register subscription-manager
-  redhat_subscription:
-    state: "{{ _state }}"
-    activationkey: "{{ _activation_key }}"
-    org_id: "{{ _org_id }}"
-    force_register: "{{ _force_register }}"
-    syspurpose:
-      usage: "{{ _usage }}"
-      role: "{{ _systemrole }}"
-      service_level_agreement: "{{ _service_level_agreement }}"
-      sync: "{{ _sync }}"
-  register: rhsm_results
+- name: Block - Register host {{ inventory_hostname }}
+  tags: create
 
-- name: Log _rhsm_results
+  block:
+    - name: Register host {{ inventory_hostname }}
+      register: rhsm_results
+      community.general.redhat_subscription:
+        activationkey: "{{ _activation_key }}"
+        force_register: "{{ _force_register }}"
+        org_id: "{{ _org_id }}"
+        state: "{{ _state }}"
+        syspurpose:
+          usage: "{{ _usage }}"
+          role: "{{ _systemrole }}"
+          service_level_agreement: "{{ _service_level_agreement }}"
+          sync: "{{ _sync }}"
+
+- name: Block - Install subscription-manager & register host {{ inventory_hostname }}
+  tags:
+    - remove
+
+  block:
+    - name: Unregister host {{ inventory_hostname }}
+      register: rhsm_results
+      community.general.redhat_subscription:
+        state: absent
+
+- name: Log rhsm_results
+  when: rhsm_results is defined
   ansible.builtin.debug:
     var: rhsm_results

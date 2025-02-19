@@ -1,6 +1,6 @@
 ---
-_org_id: 
-_activation_key: 
+_org_id:
+_activation_key:
 _force_register: true
 _state: 'present'
 _usage: 'Dev'
