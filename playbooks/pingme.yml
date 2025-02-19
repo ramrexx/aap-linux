@@ -6,4 +6,4 @@
 
   roles:
       - role: pingme
-        tags: create
+        tags: "{{ _tags }}"
