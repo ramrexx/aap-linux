@@ -1,4 +1,6 @@
-# rhsm (subscription-manager role)
+# Role: subscription_mgr
+# Ensure that subscription-manager is installed
+# Depending on the tag [create = register host] [remove = unregister host]
 ---
 - name: Subscription_mgr
   hosts: "{{ _hosts }}"

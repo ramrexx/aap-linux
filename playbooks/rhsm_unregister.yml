@@ -1,8 +1,0 @@
----
-- name: rhsm_unregister
-  hosts: "{{ _hosts }}"
-  become: true
-  gather_facts: false
-
-  roles:
-    - role: rhsm_unregister

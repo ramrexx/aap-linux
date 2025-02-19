@@ -1,5 +1,3 @@
-# Ensure that subscription-manager is installed
-# Depending on the tag [create = register host] [remove = unregister host]
 ---
 - name: Ensure subscription-manager is installed
   tags: always
