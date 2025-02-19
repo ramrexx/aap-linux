@@ -1,13 +1,10 @@
 ---
 - name: Ping {{ inventory_hostname }}
   register: pingme_results
-  tags:
-    - create
   ansible.builtin.ping:
 
 - name: Log pingme_results
-  tags:
-    - create
-  # when: ping_results is defined
+  when: pingme_results is defined
   ansible.builtin.debug:
     var: pingme_results
+  verbosity: 2

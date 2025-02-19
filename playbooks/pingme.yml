@@ -1,11 +1,10 @@
 ---
-- name: pingme
+- name: Pingme
   hosts: "{{ _hosts }}"
   become: false
   gather_facts: false
 
   tasks:
-    - name: Include the pingme role
-      tags: create
+    - name: Include pingme role
       ansible.builtin.include_role:
         name: pingme
