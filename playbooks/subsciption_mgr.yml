@@ -1,0 +1,9 @@
+# rhsm (subscription-manager role)
+---
+- name: Subscription_mgr
+  hosts: "{{ _hosts }}"
+  become: true
+  gather_facts: false
+
+  roles:
+    - role: subscription_mgr
