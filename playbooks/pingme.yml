@@ -6,6 +6,6 @@
 
   tasks:
     - name: Include the pingme role
-      tags: "{{ _tags }}"
+      tags: create
       ansible.builtin.include_role:
         name: pingme
