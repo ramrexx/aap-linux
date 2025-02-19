@@ -1,10 +1,10 @@
+# Role: pingme
+# simple ansible ping test
 ---
 - name: Pingme
   hosts: "{{ _hosts }}"
   become: false
   gather_facts: false
 
-  tasks:
-    - name: Include pingme role
-      ansible.builtin.include_role:
-        name: pingme
+  roles:
+    - role: pingme

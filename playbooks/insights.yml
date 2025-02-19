@@ -1,20 +1,12 @@
+# Role: insights
+# Ensure that subscription-manager is installed
+# insights-client is installed
+# Depending on the tag [create = register host] [remove = unregister host]
 ---
-- name: insights
+- name: Insights
   hosts: "{{ _hosts }}"
   become: true
   gather_facts: false
 
-  tasks:
-    - name: register insights
-      include_role:
-        name: insights
-      vars:
-        _state: present
-      when: _state is not defined or _state == '' or _state == 'present'
-
-    - name: unregister insights
-      include_role:
-        name: insights
-      vars:
-        _state: absent
-      when: _state == 'absent'
+  roles:
+    - role: insights

@@ -1,5 +1,5 @@
 ---
-- name: Executing DNF
+- name: Executing dnf
   register: dnf_results
   ansible.builtin.dnf:
     name: "{{ _servicename }}"

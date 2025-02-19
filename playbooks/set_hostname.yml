@@ -1,3 +1,5 @@
+# Role: set_hostname
+# use the set_hostname module to change a linux systems hostname
 ---
 - name: set_hostname
   hosts: "{{ _hosts }}"

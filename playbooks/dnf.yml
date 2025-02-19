@@ -1,3 +1,5 @@
+# Role: dnf
+# pass in _servicename: and _servicestate:
 ---
 - name: dnf
   hosts: "{{ _hosts }}"
