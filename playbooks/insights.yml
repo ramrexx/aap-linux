@@ -14,7 +14,8 @@
         keys:
           - "{{ _activation_key }}"
     rhc_organization: "{{ _org_id }}"
-
+    roles:
+      - role: rhel-system-roles.rhc
   # tasks:
   #   - name: Registering system with Insights using activation key and organization ID
   #     tags: create
@@ -24,5 +25,3 @@
   #           keys:
   #             - "{{ _activation_key }}"
   #       rhc_organization: "{{ _org_id }}"
-  roles:
-    - role: rhel-system-roles.rhc

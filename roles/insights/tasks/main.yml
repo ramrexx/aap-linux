@@ -1,18 +1,33 @@
 ---
-- name: Ensure subscription-manager is installed
+- name: Installing rhel-system-roles
   tags: always
+  register: dnf_out
   ansible.builtin.dnf:
-    name: subscription-manager
+    name:
+      - rhel-system-roles
+      - insights-client
     state: present
 
-- name: Registering system with Insights using activation key and organization ID
+- name: Log dnf_out
+  tags: always
+  when: dnf_out is defined
+  ansible.builtin.debug:
+    var: dnf_out
+    verbosity: 2
+
+- name: Registering {{ inventory_hostname }}
   tags: create
-  hosts: localhost
-  vars:
-    rhc_auth:
-      activation_keys:
-        keys:
-          - "{{ _activation_key }}"
-     rhc_organization: "{{ _org_id }}"
-  roles:
-    - role: rhel-system-roles.rhc
+  register: insights_output
+  ansible.builtin.command: rhc connect --organization {{ _org_id }} --activation-key {{ _activation_key }}
+
+- name: Unregistering {{ inventory_hostname }}
+  tags: remove
+  register: insights_output
+  ansible.builtin.command: insights-client --unregister
+
+- name: Log insights_output
+  tags: always
+  when: insights_output is defined
+  ansible.builtin.debug:
+    var: insights_output
+    verbosity: 2
