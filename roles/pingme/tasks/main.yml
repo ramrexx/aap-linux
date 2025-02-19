@@ -1,11 +1,11 @@
 ---
-- name: Pinging host {{ inventory_hostname }}
+- name: Pinging {{ inventory_hostname }}
   register: pingme_results
   tags:
     - create
   ansible.builtin.ping:
 
-- name: Log ping_results
+- name: Log pingme_results
   tags:
     - create
   when: ping_results is defined
