@@ -1,5 +1,5 @@
 ---
-- name: Pinging host {{ ansible_host }}
+- name: Pinging host {{ inventory_hostname }}
   register: pingme_results
   tags:
     - create
