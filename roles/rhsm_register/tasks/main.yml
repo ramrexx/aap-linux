@@ -22,6 +22,11 @@
           service_level_agreement: "{{ _service_level_agreement }}"
           sync: "{{ _sync }}"
 
+    - name: Log rhsm_results
+      when: rhsm_results is defined
+      ansible.builtin.debug:
+        var: rhsm_results
+
 - name: Block - Install subscription-manager & register host {{ inventory_hostname }}
   tags:
     - remove
@@ -32,7 +37,7 @@
       community.general.redhat_subscription:
         state: absent
 
-- name: Log rhsm_results
-  when: rhsm_results is defined
-  ansible.builtin.debug:
-    var: rhsm_results
+    - name: Log rhsm_results
+      when: rhsm_results is defined
+      ansible.builtin.debug:
+        var: rhsm_results
