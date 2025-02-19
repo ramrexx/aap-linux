@@ -1,18 +1,16 @@
 ---
 - name: Installing rhel-system-roles
   tags: always
-  register: dnf_out
+  register: insights_dnf_output
   ansible.builtin.dnf:
-    name:
-      - rhel-system-roles
-      - insights-client
+    name: "{{ insights_packages }}"
     state: present
 
-- name: Log dnf_out
+- name: Log insights_dnf_output
   tags: always
   when: dnf_out is defined
   ansible.builtin.debug:
-    var: dnf_out
+    var: insights_dnf_output
     verbosity: 2
 
 - name: Registering {{ inventory_hostname }}

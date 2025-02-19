@@ -1,3 +1,7 @@
 ---
-_org_id:
 _activation_key:
+_org_id:
+
+insights_packages:
+  - rhel-system-roles
+  - insights-client
