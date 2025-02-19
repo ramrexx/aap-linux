@@ -7,4 +7,3 @@
   when: pingme_results is defined
   ansible.builtin.debug:
     var: pingme_results
-    # verbosity: 2
