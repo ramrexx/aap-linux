@@ -18,12 +18,12 @@
 - name: Registering {{ inventory_hostname }}
   tags: create
   register: insights_output
-  ansible.builtin.command: rhc connect --organization {{ _org_id }} --activation-key {{ _activation_key }}
+  ansible.builtin.command: "rhc connect --organization {{ _org_id }} --activation-key {{ _activation_key }}"
 
 - name: Unregistering {{ inventory_hostname }}
   tags: remove
   register: insights_output
-  ansible.builtin.command: insights-client --unregister
+  ansible.builtin.command: "insights-client --unregister"
 
 - name: Log insights_output
   tags: always

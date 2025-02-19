@@ -1,27 +1,11 @@
 # Role: insights
-# Ensure that subscription-manager is installed
-# insights-client is installed
+# Ensure that subscription-manager, insights-client, rhel-system-roles are installed
 # Depending on the tag [create = register host] [remove = unregister host]
 ---
-- name: Insights
+- name: Insights Role
   hosts: "{{ _hosts }}"
   become: true
   gather_facts: false
 
-  vars:
-    rhc_auth:
-      activation_keys:
-        keys:
-          - "{{ _activation_key }}"
-    rhc_organization: "{{ _org_id }}"
     roles:
-      - role: rhel-system-roles.rhc
-  # tasks:
-  #   - name: Registering system with Insights using activation key and organization ID
-  #     tags: create
-  #     vars:
-  #       rhc_auth:
-  #         activation_keys:
-  #           keys:
-  #             - "{{ _activation_key }}"
-  #       rhc_organization: "{{ _org_id }}"
+      - role: insights
