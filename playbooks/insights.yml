@@ -8,5 +8,21 @@
   become: true
   gather_facts: false
 
+  vars:
+    rhc_auth:
+      activation_keys:
+        keys:
+          - "{{ _activation_key }}"
+    rhc_organization: "{{ _org_id }}"
+
+  # tasks:
+  #   - name: Registering system with Insights using activation key and organization ID
+  #     tags: create
+  #     vars:
+  #       rhc_auth:
+  #         activation_keys:
+  #           keys:
+  #             - "{{ _activation_key }}"
+  #       rhc_organization: "{{ _org_id }}"
   roles:
-    - role: insights
+    - role: rhel-system-roles.rhc

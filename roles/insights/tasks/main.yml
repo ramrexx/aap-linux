@@ -1,31 +1,18 @@
 ---
-- name: Installing insights-client
+- name: Ensure subscription-manager is installed
   tags: always
-  register: dnf_out
   ansible.builtin.dnf:
-    name: insights-client
+    name: subscription-manager
     state: present
 
-- name: Log dnf_out
-  tags: always
-  when: dnf_out is defined
-  ansible.builtin.debug:
-    var: dnf_out
-    verbosity: 2
-
-- name: Registering {{ inventory_hostname }}
+- name: Registering system with Insights using activation key and organization ID
   tags: create
-  register: insights_output
-  ansible.builtin.command: insights-client --register
-
-- name: Unregistering {{ inventory_hostname }}
-  tags: remove
-  register: insights_output
-  ansible.builtin.command: insights-client --unregister
-
-- name: Log insights_output
-  tags: always
-  when: insights_output is defined
-  ansible.builtin.debug:
-    var: insights_output
-    verbosity: 2
+  hosts: localhost
+  vars:
+    rhc_auth:
+      activation_keys:
+        keys:
+          - "{{ _activation_key }}"
+     rhc_organization: "{{ _org_id }}"
+  roles:
+    - role: rhel-system-roles.rhc
