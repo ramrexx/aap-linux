@@ -1,11 +1,13 @@
 ---
 - name: Pinging host {{ ansible_host }}
   register: pingme_results
-  tags: "{{ _tags }}"
+  tags:
+    - create
   ansible.builtin.ping:
 
 - name: Log ping_results
-  tags: "{{ _tags }}"
+  tags:
+    - create
   when: ping_results is defined
   ansible.builtin.debug:
     var: pingme_results
