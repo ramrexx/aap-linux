@@ -7,13 +7,6 @@
   tasks:
     - name: register insights
       include_role:
-        name: dnf
-      vars:
-        _servicename: insights-client
-        _servicestate: present
-
-    - name: register insights
-      include_role:
         name: insights
       vars:
         _state: present

@@ -4,7 +4,6 @@
   become: false
   gather_facts: false
 
-  tasks:
-      - name: Executing pingme
-        include_role:
-          name: pingme
+  roles:
+      - role: pingme
+        tag: create

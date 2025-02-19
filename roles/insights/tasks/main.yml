@@ -1,9 +1,17 @@
 ---
-- name: register insights
-  include_role:
-    name: insights
-  # when: _state == 'present'
-  register: insights_results
+- name: Installing insights-client
+  ansible.builtin.dnf:
+    name: insights-client
+    state: latest
+  register: dnf_out
+
+- name: Log dnf_out
+  ansible.builtin.debug:
+    var: dnf_out
+
+- name: Running insights register
+    command: insights-client --register
+  register: register_output
 
 - name: Log insights_results
   ansible.builtin.debug:
