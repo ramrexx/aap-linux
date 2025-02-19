@@ -7,5 +7,5 @@
   become: true
   gather_facts: false
 
-    roles:
-      - role: insights
+  roles:
+    - role: insights
