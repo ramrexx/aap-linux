@@ -4,6 +4,8 @@
   become: false
   gather_facts: false
 
-  roles:
-      - role: pingme
-        tags: "{{ _tags }}"
+  tasks:
+    - name: Include the pingme role
+      tags: "{{ _tags }}"
+      ansible.builtin.include_role:
+        name: pingme
